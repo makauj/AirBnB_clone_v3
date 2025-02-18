@@ -94,20 +94,3 @@ def create_user(user_id):
 def logout_user():
     """logout a user"""
     return jsonify({}), 200
-
-
-@app_views.route('/users/<string:user_id>', methods=['PUT'],
-                 strict_slashes=False)
-@swag_from('swagger_yaml/user_id_put.yml', methods=['PUT'])
-def put_user(user_id):
-    """update a user"""
-    user = storage.get(User, user_id)
-    if user is None:
-        abort(404)
-    if not request.get_json():
-        return jsonify({'error': 'Not a JSON'}), 400
-    for key, value in request.get_json().items():
-        if key not in ['id', 'email', 'created_at', 'updated_at']:
-            setattr(user, key, value)
-    user.save()
-    return jsonify(user.to_dict())
