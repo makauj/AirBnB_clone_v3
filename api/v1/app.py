@@ -27,7 +27,7 @@ def not_found(error):
 
 app.config['SWAGGER'] = {
     'title': 'AirBnB clone RESTful API',
-    'description': 'AirBnB clone RESTful API',
+    'description': 'RESTful API for the AirBnB clone project',
     'uiversion': 3
 }
 swagger = Swagger(app)
@@ -36,4 +36,4 @@ swagger = Swagger(app)
 if __name__ == "__main__":
     host = getenv("HBNB_API_HOST", default="0.0.0.0")
     port = getenv("HBNB_API_PORT", default=5000)
-    app.run(host=host, port=port, threaded=True)
+    app.run(host, int(port), threaded=True)
