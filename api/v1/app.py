@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""principal application aapp"""
+"""principal application app"""
 from flask import Flask, jsonify, make_response
 from models import storage
 from api.v1.views import app_views
@@ -21,7 +21,7 @@ def close_storage(exception):
 
 @app.errorhandler(404)
 def not_found(error):
-    """not found"""
+    """Custom 'Page not found' loaded"""
     return make_response(jsonify({"error": "Not found"}), 404)
 
 
